@@ -1,0 +1,52 @@
+=============================================================
+HN
+
+NOTE: As Mufti Yusuf emailed recently, you can now open the class adobe connect recording links on your mobile directly using Puffin browser. See his email for details.. the app is for both android & apple (http://www.puffinbrowser.com/).
+If you still need to convert to mp3, follow on.
+
+
+
+STEPS TO CONVERT ADOBE CONNECT RECORDING LINKS TO MP3:
+* get the link for the recording from helpdesk or sr. Asma's email. Like so:
+  https://learnarabiconlinellc.adobeconnect.com/p5i7b1luar0/
+
+* copy paste this text after that link: 	output/filename.zip?download=zip
+  final link looks as follows:
+  https://learnarabiconlinellc.adobeconnect.com/p5i7b1luar0/output/filename.zip?download=zip
+
+* open that link in browser to automatically start download of a zip file from adobe.
+  Extract that zip file to a folder after download; it has lot of flv files in it, and the largest of it
+  corresponds usually to the teachers audio recording. Usually they are named like cameraVoip_0_2.flv and
+  note that there can be multiple of them, depending on whether the recording was stopped & restarted etc.  
+  If you on your PC, you can just play this flv file using VLC player -- no additional steps needed.
+
+* to convert the flv to a mp3 file so you can play on your mobile phone, continue.
+  download *Windows version* of ffmpeg from https://ffmpeg.org/download.html
+  make sure you download the windows version and correct build - either 32bit or 64bit matching your system.
+  once you download it, copy the ffmpeg.exe to c:\ for convenience (optional step)
+
+* to convert from the flv to mp3, run these commands:
+  c:\ffmpeg.exe   -i  cameraVoip_0_2.flv -b:a 16k cameraVoip_0_2.mp3
+  Do this for each flv file.
+  note: you might see errors saying 'Application provided non monotonically increasing dts... blah blah'. you can ignore this error.
+
+* Further instructions only if you have a situation where you have multiple recordings and want to combine them.
+  Ex: in few HN classes, where students participate in reading - there will be multiple flv files - one per student recording.
+  To combine that with the main teachers flv recording, follow below steps.
+  NOTE: This section is incomplete. Just use below link & example command lines as pointers.
+  
+  http://superuser.com/questions/767722/ffmpeg-combine-two-mono-live-audio-stream-to-single-stereo-stream
+  
+  c:\ffmpeg.exe   -i  cameraVoip_4_9.flv -b:a 16k c:\xfer\dev\test5.mp3
+
+  c:\ffmpeg.exe -i cameraVoip_2_7.flv -i cameraVoip_5_10.flv -filter_complex "[0:a][1:a]amix" -ac 2  testMux.mp3
+
+  c:\ffmpeg.exe -i cameraVoip_2_7.flv -i cameraVoip_5_10.flv -filter_complex "[0:a][1:a]amix" -ac 2  testMuxDelayed.mp3
+
+  c:\ffmpeg.exe -i cameraVoip_5_10.flv -i cameraVoip_2_7.flv -filter_complex "[0:a]adelay=15000[delay0];[delay0][1:a]amix" -ac 2  testMuxDelayed7.mp3
+
+  c:\ffmpeg.exe -i cameraVoip_5_10.flv -i cameraVoip_2_7.flv -filter_complex "[0:a]adelay=15000|0[delay0];[delay0][1:a]amix" -ac 2  testMuxDelayed7.mp3
+
+  c:\ffmpeg.exe -i cameraVoip_5_10.flv -i cameraVoip_2_7.flv -filter_complex "[0:a]adelay=60000[delay0];[delay0][1:a]amix"   testMuxDelayed9.mp3
+
+================================================================  
