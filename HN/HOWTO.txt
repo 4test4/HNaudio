@@ -37,7 +37,7 @@ STEPS TO CONVERT ADOBE CONNECT RECORDING LINKS TO MP3:
   
   http://superuser.com/questions/767722/ffmpeg-combine-two-mono-live-audio-stream-to-single-stereo-stream
   
-  c:\ffmpeg.exe   -i  cameraVoip_4_9.flv -b:a 16k c:\xfer\dev\test5.mp3
+  c:\ffmpeg.exe   -i  cameraVoip_4_9.flv -b:a 16k test5.mp3
 
   c:\ffmpeg.exe -i cameraVoip_2_7.flv -i cameraVoip_5_10.flv -filter_complex "[0:a][1:a]amix" -ac 2  testMux.mp3
 
